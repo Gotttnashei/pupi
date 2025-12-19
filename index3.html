@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5" name="viewport"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+  <link rel="icon" href="./midias/envelope.png">
+  <title>Última parte </title>
+
+  <style>
+    :root{
+      --warna-bg: rgba(0,0,0,.5);
+      --warna-teks: white;
+      --warna-bingkai: rgba(255,255,255,.5);
+      --bingkai: 20px;
+      --gaya-font: 'Ubuntu', sans-serif;
+    }
+    body{
+      background-image:url("./midias/fundo1.jpg");
+      background-repeat:no-repeat;background-size:110% 110%;
+      background-color:#101010;font-family:var(--gaya-font);padding:25px;
+      user-select:none;transition:all .3s ease;
+    }
+    body::before{
+      content:"\00A9  19/12/2025 ";
+      color:white;opacity:.3;font-size:2vw;position:fixed;bottom:25px;left:25px;z-index:2
+    }
+    #bodyblur{position:fixed;inset:0;background:rgba(0,0,0,.5);}
+    #Content{position:relative;opacity:0;margin-top:50px;width:100%;height:180px;transition:all 1.8s ease;}
+    #Content > *{display:flex;align-items:center;text-align:center;justify-content:center;margin-top:15px;}
+    #bq{opacity:0;visibility:hidden;transition:all .3s ease;width:400px;background:none;color:var(--warna-teks);text-shadow:0 2px 2px rgba(0,0,0,.8);text-align:center;line-height:1.3em;padding:25px;border-radius:var(--bingkai);}
+    #kalimat{opacity:1;transform:scale(1);font-size:18px;font-weight:700;}
+    p{opacity:0;color:var(--warna-teks);font-size:18px;font-weight:700;line-height:1.4em;margin:0 25px;text-shadow:0 2px 2px rgba(0,0,0,.8);transform:scale(.1);transition:all .3s ease;}
+    img{display:none;background:rgba(255,255,255,1);border-radius:10px;padding:10px;width:100px;height:100px;margin:20px 0 0 0;}
+    #fotosatu{display:inline-flex;}
+  </style>
+</head>
+
+<body>
+<div id="bodyblur"></div>
+
+<div id="Content">
+  <div>
+    <img id="fotosatu" src=""/>
+    <img id="fotodua" src=""/>
+    <img id="fototiga" src=""/>
+    <img id="fotoempat" src=""/>
+  </div>
+
+  <div>
+    <blockquote id="bq">
+      <p id="kalimat">...</p>
+    </blockquote>
+  </div>
+</div>
+
+<script>
+  const swalst = Swal.mixin({
+    allowOutsideClick:false, showConfirmButton:false, timer:1000, timerProgressBar:true,
+    didOpen: () => Swal.showLoading()
+  });
+
+  const swals = Swal.mixin({ allowOutsideClick:false, cancelButtonColor:'#FF0040' });
+
+  const audio = new Audio('./midias/musica1.mp3');
+
+  function setel(){ audio.play(); }
+  function kpemb(){ bq.style="opacity:1;visibility:visible;margin-top:5px"; }
+  function otomatis(){
+    kalimat.style="transform:scale(.3);";
+    setTimeout(()=> kalimat.style="transform:scale(1);", 300);
+  }
+
+  function loadfoto(){
+    fotosatu.style="display:inline-flex";
+    fotosatu.src = gambar1;
+    fotodua.src  = gambar2;
+    fototiga.src = gambar3;
+    fotoempat.src= gambar4;
+  }
+
+  function showDiv(){
+    setTimeout(setel,50);
+    pergantian();
+    setTimeout(kpemb,100);
+    document.getElementById('Content').style="opacity:1;margin-top:4vh;";
+  }
+
+  let fkata=1;
+  function gantikata(){
+    if(fkata===1){ otomatis(); kalimat.innerHTML = katasatu; }
+    if(fkata===2){ otomatis(); kalimat.innerHTML = katadua; }
+    if(fkata===3){ otomatis(); kalimat.innerHTML = katatiga; fotosatu.style="display:none"; fotodua.style="display:inline-flex"; }
+    if(fkata===4){ otomatis(); kalimat.innerHTML = kataempat; }
+    if(fkata===5){ otomatis(); kalimat.innerHTML = katalima; }
+    if(fkata===6){ otomatis(); kalimat.innerHTML = kataenam; fotodua.style="display:none"; fototiga.style="display:inline-flex"; }
+    if(fkata===7){ otomatis(); kalimat.innerHTML = katatujuh; fototiga.style="display:none"; fotoempat.style="display:inline-flex"; }
+    fkata++;
+  }
+
+  function pergantian(){
+    setTimeout(gantikata,500);
+    setTimeout(gantikata,2300);
+    setTimeout(gantikata,3500);
+    setTimeout(gantikata,6000);
+    setTimeout(gantikata,7000);
+    setTimeout(gantikata,8300);
+    setTimeout(gantikata,9999);
+  }
+
+  async function primera(){
+    gambar1 = "./midias/figu6.gif";
+    gambar2 = "./midias/figu8.gif";
+    gambar3 = "./midias/figu8.gif";
+    gambar4 = "./midias/figu5.gif";
+
+    katasatu = "Ludmila Azul Ramallo ";
+    katadua  = "una mas por las dudas  ";
+    katatiga = "Y eso es el resultado de tu esfuerzo y constancia";
+    kataempat= "Me encantas mucho pendeja de re mierda ";
+    katalima = "Ahora empieza un nuevo capítulo";
+    kataenam = "Abogacía un camino enorme, y te queda perfecto";
+    katatujuh= "y cerramos con una frase : donde hay constancia, hay futuro. Y vos tenés de sobra.";
+
+    loadfoto();
+    await swalst.fire();
+    await swals.fire(" te quiero mucho  ");
+    setTimeout(showDiv,300);
+  }
+  primera();
+</script>
+</body>
+</html>
